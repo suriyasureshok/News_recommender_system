@@ -37,7 +37,7 @@ This is an end-to-end Machine Learning project that classifies news articles int
 - Live News Feed: Ingested and classified automatically in real-time
 
 ## 🧑‍💻 Author
-**Suriya**
+**Suriya** - 
 Aspiring Machine Learning Engineer | Building ML Projects with MLOps
 
 ## 🏷️ Tags
