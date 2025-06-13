@@ -1,0 +1,15 @@
+artifact_uri: file:///C:/Users/SURIYA/Desktop/ML%20Projects/News_recommender_system/mlruns/776161621417124049/09f61860edc24a8395ab759bc413ff81/artifacts
+end_time: 1749838244121
+entry_point_name: ''
+experiment_id: '776161621417124049'
+lifecycle_stage: active
+run_id: 09f61860edc24a8395ab759bc413ff81
+run_name: languid-wasp-865
+run_uuid: 09f61860edc24a8395ab759bc413ff81
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749838244105
+status: 4
+tags: []
+user_id: SURIYA
