@@ -9,4 +9,6 @@ nltk
 xgboost
 zenml
 mlflow
+psycopg2-binary
+schedule
 #-e .
