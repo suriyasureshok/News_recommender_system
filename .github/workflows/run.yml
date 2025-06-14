@@ -1,23 +1,32 @@
-name: Run News Pipeline
+name: Fetch and Store News
 
 on:
-  schedule: 
-    - cron: '0 0,6,12,18 * * *'
+  schedule:
+    - cron: '0 */6 * * *'
   workflow_dispatch:
 
 jobs:
-  run:
+  run-pipeline:
     runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
 
-      - name: Set Up Python
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
         with:
           python-version: '3.10'
 
-      - name: Install Dependencies
+      - name: Install dependencies
         run: |
           pip install -r requirements.txt
 
-      - name:
-        run: python news_fetch\run_fetch_pipeline.py 
+      - name: Run news fetch and store pipeline
+        run: |
+          python news_fetch\run_fetch_pipeline.py
+        env:
+          NEON_DB_NAME: ${{ secrets.NEON_DB_NAME }}
+          NEON_DB_USER: ${{ secrets.NEON_DB_USER }}
+          NEON_DB_PASS: ${{ secrets.NEON_DB_PASS }}
+          NEON_DB_URL: ${{ secrets.NEON_DB_URL }}
