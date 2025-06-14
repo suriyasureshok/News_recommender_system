@@ -1,37 +1,42 @@
 import sys
-from src.logger import logging
+import logging
 
-def get_error_message(error,error_detail:sys):
+def error_message_details(error, error_detail: sys):
     """
-    Function for getting error message from sys module.
+    This function returns detailed error message including filename and line number.
     """
-    exc_type,exc_value,exc_tb = error_detail.exc_info(error)
+    exc_type, exc_value, exc_tb = error_detail.exc_info()
+
     if exc_tb is not None:
         file_name = exc_tb.tb_frame.f_code.co_filename
         line_number = exc_tb.tb_lineno
-        error_message = f"Error in file {file_name} at line {line_number} - {exc_value}"
+        error_message = f"Error occurred in python script name [{file_name}] line number [{line_number}] error message [{str(error)}]"
     else:
-        error_message = f"Error occured with message - {exc_value}"
-    
+        error_message = f"Error occurred with message: {str(error)}"
+
     return error_message
+
 class CustomException(Exception):
     """
-    Base class for exceptions in this module.
+    This class helps to create a custom exception.
     """
-    def __init__(self,error_message,error_detail:sys):
+    def __init__(self, error_message, error_detail:sys):
+        """
+        This method overrides the constructor of the parent Exception class.
+        """
         super().__init__(error_message)
-        self.error_message = error_message
+        self.error_message = error_message_details(error_message,error_detail=error_detail)
 
     def __str__(self):
         return self.error_message
     
-"""
-Test code for the Custom Exception
-"""
 if __name__ == "__main__":
     try:
-        a = 10
-        b = a/0
+        a = 1/0
     except Exception as e:
-        logging.info("Error has been caught")
+        logging.info("Divide by zero")
         raise CustomException(e,sys)
+    
+"""
+This is a code that was used to test the custom exception.
+""" 

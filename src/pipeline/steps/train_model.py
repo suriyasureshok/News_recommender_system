@@ -6,7 +6,7 @@ from src.logger import logging
 from src.exception import CustomException
 from sklearn.base import BaseEstimator
 
-@step
+@step(enable_cache=False)
 def train_step(X_train,y_train)-> BaseEstimator:
     try:
         with mlflow.start_run(nested=True):

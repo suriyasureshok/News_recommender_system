@@ -17,7 +17,7 @@ class CSVIngestor(DataIngestor):
                 logging.info("DataSet Loaded Successfully.")
                 return df
             else:
-                logging.error("Invalid file path")
+                logging.info("Invalid file path")
                 raise CustomException("The loaded dataset is not a csv file. Please upload a csv file.")
             
         except Exception as e:

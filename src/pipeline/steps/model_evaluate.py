@@ -6,7 +6,7 @@ from src.exception import CustomException
 from src.logger import logging
 import sys
 
-@step
+@step(enable_cache=False)
 def evaluate_step(model,X_test,y_test) -> float:
     try:
         with mlflow.start_run(nested=True):

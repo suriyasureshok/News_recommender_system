@@ -6,7 +6,7 @@ import sys
 from src.logger import logging
 from src.exception import CustomException
 
-@step
+@step(enable_cache=False)
 def preprocess_step(df: pd.DataFrame) -> pd.DataFrame:
     try:
         clean_df = preprocess(df)

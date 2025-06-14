@@ -6,7 +6,7 @@ import mlflow
 from src.exception import CustomException
 from src.logger import logging
 
-@step
+@step(enable_cache=False)
 def ingest_step(data_path:str) -> pd.DataFrame:
     try:
         mlflow.set_experiment("News_Recommendation_Pipeline")

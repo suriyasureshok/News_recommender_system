@@ -10,7 +10,7 @@ from src.exception import CustomException
 from scipy.sparse import csr_matrix
 import mlflow
 
-@step
+@step(enable_cache=False)
 def vectorize_step(df: pd.DataFrame) -> Tuple[
     Annotated[csr_matrix,"X_train"],
     Annotated[csr_matrix,"X_test"],

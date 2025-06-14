@@ -5,7 +5,7 @@ import mlflow
 from src.logger import logging
 from src.exception import CustomException
 
-@step
+@step(enable_cache=False)
 def save_step(model,vectorizer) -> None:
     try:
         with mlflow.start_run(nested=True):

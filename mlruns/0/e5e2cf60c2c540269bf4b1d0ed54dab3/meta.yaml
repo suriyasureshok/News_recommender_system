@@ -1,0 +1,15 @@
+artifact_uri: mlflow-artifacts:/0/e5e2cf60c2c540269bf4b1d0ed54dab3/artifacts
+end_time: 1749874836695
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: e5e2cf60c2c540269bf4b1d0ed54dab3
+run_name: delightful-ox-198
+run_uuid: e5e2cf60c2c540269bf4b1d0ed54dab3
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1749874836020
+status: 3
+tags: []
+user_id: SURIYA
