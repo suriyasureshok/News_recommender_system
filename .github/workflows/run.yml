@@ -24,7 +24,7 @@ jobs:
 
       - name: Run news fetch and store pipeline
         run: |
-          python news_fetch\run_fetch_pipeline.py
+          python news_fetch/run_fetch_pipeline.py
         env:
           NEON_DB_NAME: ${{ secrets.NEON_DB_NAME }}
           NEON_DB_USER: ${{ secrets.NEON_DB_USER }}
