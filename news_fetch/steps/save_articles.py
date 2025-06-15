@@ -25,14 +25,14 @@ def save_db_step(df:pd.DataFrame) -> None:
                 VALUES (%s)
                 ON CONFLICT (name) DO NOTHING
                 RETURNING id
-            """, (row["category"],))
+            """, (row["categories"],))
             result = cursor.fetchone()
             if result:
                 category_id = result[0]
             else:
                 cursor.execute("""
                     SELECT id FROM categories WHERE name = %s
-                """, (row["category"],))
+                """, (row["categories"],))
                 category_id = cursor.fetchone()[0]
 
             cursor.execute("""
