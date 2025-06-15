@@ -15,7 +15,7 @@ def save_db_step(df:pd.DataFrame) -> None:
                 INSERT INTO Storage_of_articles (title, description, date)
                 VALUES (%s, %s, %s, %s)
             """,
-            (row["title"], row["content"], row["published_at"]))
+            (row["title"], row["description"], row["published_at"]))
             article_id = cursor.fetchone()[0]
 
             cursor.execute("""
