@@ -21,7 +21,7 @@ def preprocess_input_step(model,df:pd.DataFrame) -> list[dict]:
             labeled_articles.append({
                 "title": df.iloc[idx]["title"],
                 "description": df.iloc[idx]["description"],
-                "published_At": df.iloc[idx]["published_At"],
+                "published_at": df.iloc[idx]["published_at"],
                 "category_level_1": label
             })
 
