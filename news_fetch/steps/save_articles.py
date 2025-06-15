@@ -20,26 +20,30 @@ def save_db_step(df:pd.DataFrame) -> None:
             (row["title"], row["description"], row["published_at"]))
             article_id = cursor.fetchone()[0]
 
-            cursor.execute("""
-                INSERT INTO categories (name)
-                VALUES (%s)
-                ON CONFLICT (name) DO NOTHING
-                RETURNING id
-            """, (row["categories"],))
-            result = cursor.fetchone()
-            if result:
-                category_id = result[0]
-            else:
-                cursor.execute("""
-                    SELECT id FROM categories WHERE name = %s
-                """, (row["categories"],))
-                category_id = cursor.fetchone()[0]
+            for category in row["categories"]:
+                category_name = str(category)
 
-            cursor.execute("""
-                INSERT INTO article_categories (article_id, category_id)
-                VALUES (%s, %s)
-                ON CONFLICT DO NOTHING
-            """, (article_id, category_id))
+                cursor.execute("""
+                    INSERT INTO categories (name)
+                    VALUES (%s)
+                    ON CONFLICT (name) DO NOTHING
+                    RETURNING id
+                """, (category_name,))
+                result = cursor.fetchone()
+
+                if result:
+                    category_id = result[0]
+                else:
+                    cursor.execute("""
+                        SELECT id FROM categories WHERE name = %s
+                    """, (category_name,))
+                    category_id = cursor.fetchone()[0]
+
+                cursor.execute("""
+                    INSERT INTO article_categories (article_id, category_id)
+                    VALUES (%s, %s)
+                    ON CONFLICT DO NOTHING
+                """, (article_id, category_id))
             
         logging.info('Data Stored successfully')
         conn.commit()
