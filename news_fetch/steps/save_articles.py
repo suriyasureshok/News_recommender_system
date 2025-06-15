@@ -13,7 +13,7 @@ def save_db_step(df:pd.DataFrame) -> None:
         
         for index, row in df.iterrows():
             cursor.execute("""
-                INSERT INTO storage_of_articles (title, description, date)
+                INSERT INTO storage_of_articles (title, description, published_at)
                 VALUES (%s, %s, %s)
                 RETURNING id
             """,

@@ -22,7 +22,7 @@ def preprocess_input_step(model,df:pd.DataFrame) -> list[dict]:
                 "title": df.iloc[idx]["title"],
                 "description": df.iloc[idx]["description"],
                 "published_at": df.iloc[idx]["published_at"],
-                "category_level_1": label
+                "category": label
             })
 
         logging.info('Data preprocessing and labeling completed.')

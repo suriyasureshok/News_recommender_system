@@ -11,10 +11,10 @@ def postgres_step(label_articles) -> None:
         cursor = conn.cursor()
         for article in label_articles:
             cursor.execute("""
-                INSERT INTO articles (title, description, published_at, category_level_1)
+                INSERT INTO articles (title, description, published_at, category)
                 VALUES (%s, %s, %s, %s)
             """,
-            (article["title"], article["description"], article["published_at"], article["category_level_1"]))
+            (article["title"], article["description"], article["published_at"], article["category"]))
         logging.info('Data Stored successfully')
         conn.commit()
         cursor.close()
