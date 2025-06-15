@@ -7,21 +7,21 @@ import pandas as pd
 from zenml import step
 from src.components.data_preprocessing import preprocess
 
-@step
+@step(enable_cache=False)
 def preprocess_input_step(model,df:pd.DataFrame) -> list[dict]:
     try:
         labeled_articles = []
         vectorizer = joblib.load('model/tfidf_vectorizer.joblib')
-        df = preprocess(df)  # assuming this modifies 'content'
+        df = preprocess(df)
 
-        X = vectorizer.transform(df['content'])  # shape: (n_samples, n_features)
-        labels = model.predict(X)  # array of predictions
+        X = vectorizer.transform(df['description'])
+        labels = model.predict(X)
 
         for idx, label in enumerate(labels):
             labeled_articles.append({
                 "title": df.iloc[idx]["title"],
-                "content": df.iloc[idx]["content"],
-                "date": datetime.now().date().isoformat(),
+                "description": df.iloc[idx]["description"],
+                "published_At": df.iloc[idx]["published_At"],
                 "category_level_1": label
             })
 

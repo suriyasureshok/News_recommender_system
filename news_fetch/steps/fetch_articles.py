@@ -5,13 +5,13 @@ import sys
 from src.logger import logging
 from src.exception import CustomException
 
-@step
+@step(enable_cache=False)
 def fetch_step() -> pd.DataFrame:
     try:
-        API = '3a029167e178b9fdba7a4c5e749c7aff'
-        response = requests.get(f'https://gnews.io/api/v4/top-headlines?lang=en&token={API}')
+        API = 'a5jfEDGVHw40H8PB9xBoMlPKpg92OnGdi3OZ591I'
+        response = requests.get(f'https://api.thenewsapi.com/v1/news/all?api_token={API}&language=en&locale=in')
         data = response.json()
-        df = pd.DataFrame(data['articles'])
+        df = pd.DataFrame(data['data'])
         logging.info('Data Fetched successfully.')
         return df
     

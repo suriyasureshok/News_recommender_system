@@ -5,7 +5,7 @@ from src.exception import CustomException
 from zenml import step
 from sklearn.base import BaseEstimator
 
-@step
+@step(enable_cache=False)
 def load_step() -> BaseEstimator:
     try:
         model = joblib.load('model/classifier.pkl')

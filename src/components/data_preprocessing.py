@@ -41,7 +41,7 @@ def preprocess(df: pd.DataFrame)->pd.DataFrame:
             return ' '.join(features)
         
         logging.info('Data Cleaning started.')
-        df['content'] = df['content'].fillna('').apply(clean_text)
+        df['description'] = df['description'].fillna('').apply(clean_text)
         logging.info('Data Cleaning successful.')
         return df
     
