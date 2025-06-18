@@ -11,4 +11,16 @@ zenml
 mlflow
 psycopg2-binary
 schedule
+mesa
+fastapi 
+uvicorn 
+sqlalchemy 
+bcrypt 
+streamlit
+python-jose 
+pydantic[email]
+python-multipart
+alembic
+asyncpg
+jose
 #-e .
