@@ -1,15 +1,12 @@
 import streamlit as st
 import requests
 
-API_BASE = "http://127.0.0.1:5000"  # Change if using different port
+API_BASE = "https://github.com/suriyasureshok"
 
-# ---------------- Session State Initialization ----------------
 if "token" not in st.session_state:
     st.session_state.token = None
 if "page" not in st.session_state:
     st.session_state.page = "Login"
-
-# ------------------ API Call Helpers ------------------
 
 def login_api(email, password):
     res = requests.post(f"{API_BASE}/login", json={"email": email, "password": password})
@@ -37,8 +34,6 @@ def like_article(news_id):
     headers = {"Authorization": f"Bearer {st.session_state.token}"}
     res = requests.post(f"{API_BASE}/like/{news_id}", headers=headers)
     return res.json()
-
-# ------------------ Page Functions ------------------
 
 def login():
     st.title("🔐 Login")
@@ -72,7 +67,6 @@ def register():
 def show_articles(news_list):
     st.title("📰 Your News Feed")
 
-    # Initialize liked_news in session state
     if "liked_news" not in st.session_state:
         st.session_state.liked_news = set()
 
@@ -82,13 +76,12 @@ def show_articles(news_list):
             st.write(article['description'])
             st.caption(f"Category: {article['category']}")
 
-            # Disable like button if already liked
             if article['id'] in st.session_state.liked_news:
                 st.button("✅ Liked", key=f"liked_{article['id']}", disabled=True)
             else:
                 if st.button("👍 Like", key=f"like_{article['id']}"):
-                    like_article(article['id'])  # Call API to like
-                    st.session_state.liked_news.add(article['id'])  # Track locally
+                    like_article(article['id'])
+                    st.session_state.liked_news.add(article['id']) 
                     st.success("Liked!")
 
 
@@ -100,18 +93,15 @@ def articles_page():
     show_articles(news_list)
 
 
-# ------------------ Main Navigation Logic ------------------
-
 def main():
     st.sidebar.title("🧭 Navigation")
 
-    # Ensure session state variables are initialized
     if "token" not in st.session_state:
         st.session_state.token = None
     if "page" not in st.session_state:
         st.session_state.page = "Login"
 
-    if st.session_state.token:  # User is logged in
+    if st.session_state.token:
         nav_options = ["Articles", "Recommendations", "Logout"]
 
         if st.session_state.page not in nav_options:
@@ -132,10 +122,10 @@ def main():
         elif choice == "Logout":
             st.session_state.token = None
             st.session_state.page = "Login"
-            st.success("✅ Logged out successfully.")
+            st.success("Logged out successfully.")
             st.rerun()
 
-    else:  # User is not logged in
+    else:
         nav_options = ["Login", "Register"]
 
         if st.session_state.page not in nav_options:
@@ -151,6 +141,5 @@ def main():
             st.session_state.page = "Register"
             register()
 
-# ------------- Entry Point -------------
 if __name__ == "__main__":
     main()
