@@ -91,9 +91,8 @@ def show_articles(news_list):
                     st.session_state.liked_news.add(article['id'])  # Track locally
                     st.success("Liked!")
 
-
 def articles_page():
-    news_list = get_recommendations()
+    news_list = get_news()
     if not news_list:
         st.info("No news found.")
         return
