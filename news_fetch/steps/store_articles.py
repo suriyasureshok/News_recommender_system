@@ -7,7 +7,7 @@ import psycopg2
 @step
 def postgres_step(label_articles) -> None:
     try:
-        conn = psycopg2.connect("postgresql://neondb_owner:npg_XOkZ2jyGNd6a@ep-empty-flower-a8c046xv-pooler.eastus2.azure.neon.tech/neondb?sslmode=require")
+        conn = psycopg2.connect("postgresql://neondb_owner:npg_XOkZ2jyGNd6a@ep-empty-flower-a8c046xv-pooler.eastus2.azure.neon.tech/User?sslmode=require")
         cursor = conn.cursor()
         for article in label_articles:
             cursor.execute("""
