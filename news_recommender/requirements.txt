@@ -1,0 +1,7 @@
+Flask
+Flask_SQLAlchemy
+Flask_CORS
+python-dotenv
+psycopg2-binary
+PyJWT
+scikit-learn

@@ -22,5 +22,8 @@ pydantic[email]
 python-multipart
 alembic
 asyncpg
+flask_sqlalchemy
+flask_cors
+gunicorn
 jose
 #-e .
